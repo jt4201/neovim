@@ -1,7 +1,5 @@
 -- Initialization =============================================================
-pcall(function()
-  vim.loader.enable()
-end)
+pcall(function() vim.loader.enable() end)
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ','
@@ -63,9 +61,7 @@ end)
 -- mini.notify
 now(function()
   local filterout_lua_diagnosing = function(notif_arr)
-    local not_diagnosing = function(notif)
-      return not vim.startswith(notif.msg, 'lua_ls: Diagnosing')
-    end
+    local not_diagnosing = function(notif) return not vim.startswith(notif.msg, 'lua_ls: Diagnosing') end
     notif_arr = vim.tbl_filter(not_diagnosing, notif_arr)
     return MiniNotify.default_sort(notif_arr)
   end
@@ -98,36 +94,26 @@ later(function()
 end)
 
 -- bluz71/vim-moonfly-colors
-later(function()
-  add({ source = 'bluz71/vim-moonfly-colors', name = moonfly })
-end)
+later(function() add({ source = 'bluz71/vim-moonfly-colors', name = moonfly }) end)
 
 -- rebelot/kanagawa
 later(function()
   add({ source = 'rebelot/kanagawa.nvim' })
-  require('kanagawa').load('wave')
+  vim.cmd([[colo kanagawa]])
 end)
 
 -- miikanissi/modus-themes.nvim
-later(function()
-  add({ source = 'miikanissi/modus-themes.nvim' })
-end)
+later(function() add({ source = 'miikanissi/modus-themes.nvim' }) end)
 
 -- mini.sessions
-now(function()
-  require('mini.sessions').setup()
-end)
+now(function() require('mini.sessions').setup() end)
 
 -- mini.starter
-now(function()
-  require('mini.starter').setup()
-end)
+now(function() require('mini.starter').setup() end)
 
 -- Step two
 -- mini.extra
-later(function()
-  require('mini.extra').setup()
-end)
+later(function() require('mini.extra').setup() end)
 
 -- mini.ai
 later(function()
@@ -142,14 +128,10 @@ later(function()
 end)
 
 -- mini.align
-later(function()
-  require('mini.align').setup()
-end)
+later(function() require('mini.align').setup() end)
 
 -- mini.bufremove
-later(function()
-  require('mini.bufremove').setup()
-end)
+later(function() require('mini.bufremove').setup() end)
 
 -- mini.files
 later(function()
@@ -158,19 +140,19 @@ later(function()
   vim.api.nvim_create_autocmd('User', {
     group = minifiles_augroup,
     pattern = 'MiniFilesWindowOpen',
-    callback = function(args)
-      vim.api.nvim_win_set_config(args.data.win_id, { border = 'double' })
-    end,
+    callback = function(args) vim.api.nvim_win_set_config(args.data.win_id, { border = 'double' }) end,
   })
 end)
 
 -- mini.indentscope
-later(function()
-  require('mini.indentscope').setup({
-    symbol = '│',
-    options = { try_as_border = true },
-  })
-end)
+later(
+  function()
+    require('mini.indentscope').setup({
+      symbol = '│',
+      options = { try_as_border = true },
+    })
+  end
+)
 
 -- mini.misc
 later(function()
@@ -179,14 +161,10 @@ later(function()
 end)
 
 -- mini.move
-later(function()
-  require('mini.move').setup({ options = { reindent_linewise = false } })
-end)
+later(function() require('mini.move').setup({ options = { reindent_linewise = false } }) end)
 
 -- mini.operators
-later(function()
-  require('mini.operators').setup()
-end)
+later(function() require('mini.operators').setup() end)
 
 -- mini.pick
 later(function()
@@ -196,24 +174,16 @@ later(function()
 end)
 
 -- mini.splitjoin
-later(function()
-  require('mini.splitjoin').setup()
-end)
+later(function() require('mini.splitjoin').setup() end)
 
 -- mini.surround
-later(function()
-  require('mini.surround').setup({ search_method = 'cover_or_next' })
-end)
+later(function() require('mini.surround').setup({ search_method = 'cover_or_next' }) end)
 
 -- mini.trailspace
-later(function()
-  require('mini.trailspace').setup()
-end)
+later(function() require('mini.trailspace').setup() end)
 
 -- mini.visits
-later(function()
-  require('mini.visits').setup()
-end)
+later(function() require('mini.visits').setup() end)
 
 -- nvim-treesitter/nvim-treesitter
 now(function()
@@ -221,9 +191,7 @@ now(function()
     source = 'nvim-treesitter/nvim-treesitter',
     checkout = 'master',
     hooks = {
-      post_checkout = function()
-        vim.cmd([[TSUpdate]])
-      end,
+      post_checkout = function() vim.cmd([[TSUpdate]]) end,
     },
   }
   add({ source = 'nvim-treesitter/nvim-treesitter-textobjects', depends = { ts_spec } })
@@ -273,9 +241,7 @@ now(function()
   add({
     source = 'iamcco/markdown-preview.nvim',
     hooks = {
-      post_checkout = function()
-        vim.fn['mkdp#util#install']()
-      end,
+      post_checkout = function() vim.fn['mkdp#util#install']() end,
     },
   })
 end)
@@ -295,9 +261,7 @@ now(function()
   vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
 
   require('ufo').setup({
-    provider_selector = function(bufnr, filetype, buftype)
-      return { 'treesitter', 'indent' }
-    end,
+    provider_selector = function(bufnr, filetype, buftype) return { 'treesitter', 'indent' } end,
   })
 end)
 
