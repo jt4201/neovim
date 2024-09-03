@@ -94,7 +94,7 @@ end)
 later(function()
   add({ source = 'bluz71/vim-nightfly-colors', name = nightfly })
   vim.g.nightflyWinSeparator = 2
-  vim.cmd([[colo nightfly]])
+  -- vim.cmd([[colo nightfly]])
 end)
 
 -- bluz71/vim-moonfly-colors
@@ -105,6 +105,7 @@ end)
 -- rebelot/kanagawa
 later(function()
   add({ source = 'rebelot/kanagawa.nvim' })
+  require('kanagawa').load('wave')
 end)
 
 -- miikanissi/modus-themes.nvim
