@@ -23,14 +23,14 @@ opt.autoindent = true
 
 opt.number = true
 opt.relativenumber = true
-opt.signcolumn = 'yes'
+opt.signcolumn = 'number'
 
 opt.confirm = true
 opt.showmode = false
 
 opt.swapfile = false
 
-opt.wildmode = 'longest:full'
+opt.wildmode = 'longest:full,full'
 
 vim.opt.fillchars = {
   horiz = '━',
